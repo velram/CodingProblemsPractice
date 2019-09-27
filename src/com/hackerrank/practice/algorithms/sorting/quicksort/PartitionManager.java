@@ -60,14 +60,6 @@ public class PartitionManager {
 		System.out.println(" Printing resultArray array");
 		printArray(resultArray);	
 	}
-	
-	
-	private int[] populateResultArray(int[] leftArray, int leftArraySize, int[] resultArray) {
-		
-		
-		return null;
-	}
-
 
 	public void printArray(int[] inputArray) {
 		for(int loopIndex = 0; loopIndex < inputArray.length ; loopIndex++)
