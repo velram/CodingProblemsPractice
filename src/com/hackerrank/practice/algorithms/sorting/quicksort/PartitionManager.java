@@ -37,16 +37,28 @@ public class PartitionManager {
 			}
 		}		
 		
+		for(int loopIndex = 0 ; loopIndex < leftArraySize ; loopIndex++) {
+			resultArray[loopIndex] = leftArray[loopIndex];
+		}
+		int tempArrayLoopIndex = 0;
+		for(int loopIndex = leftArraySize ; loopIndex < (leftArraySize + equalValueArraySize) ; loopIndex++, tempArrayLoopIndex++) {
+			resultArray[loopIndex] = middleArray[tempArrayLoopIndex];
+		}
+		tempArrayLoopIndex = 0;
+		for(int loopIndex = (leftArraySize + equalValueArraySize) ; loopIndex < (leftArraySize + equalValueArraySize + rightArraySize) ; loopIndex++, tempArrayLoopIndex++) {
+			resultArray[loopIndex] = rightArray[tempArrayLoopIndex];
+		}
+		// resultArray = populateResultArray(leftArray,leftArraySize,resultArray);
 		
-		 resultArray = populateResultArray(leftArray,leftArraySize,resultArray);
 		
-		
-		System.out.println(" Printing Left array");
+		System.out.println("\n Printing Left array");
 		printArray(leftArray);
-		System.out.println(" Printing right array");
-		printArray(rightArray);
 		System.out.println(" Printing middle array");
-		printArray(middleArray);		
+		printArray(middleArray);
+		System.out.println(" Printing right array");
+		printArray(rightArray);		
+		System.out.println(" Printing resultArray array");
+		printArray(resultArray);	
 	}
 	
 	
