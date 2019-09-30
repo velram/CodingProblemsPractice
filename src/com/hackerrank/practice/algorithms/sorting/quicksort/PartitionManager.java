@@ -23,21 +23,16 @@ public class PartitionManager {
 		int medianArraySize = 0; 
 		int pivot = inputArray[0];
 		
-		for(int loopIndex = 0 ; loopIndex < inputArray.length ; loopIndex++) {
-			
+		for(int loopIndex = 0 ; loopIndex < inputArray.length ; loopIndex++) {			
 			if(inputArray[loopIndex] < pivot) {
 				leftArray[leftArraySize++] = inputArray[loopIndex];
 			}
-		}	
-		
-		for(int loopIndex = 0 ; loopIndex < inputArray.length ; loopIndex++) {
-			if(inputArray[loopIndex] > pivot) {
+			
+			else if(inputArray[loopIndex] > pivot) {
 				rightArray[rightArraySize++] = inputArray[loopIndex];
 			}
-		}
-		
-		for(int loopIndex = 0 ; loopIndex < inputArray.length ; loopIndex++) {
-			if (inputArray[loopIndex] == pivot) {
+			
+			else if (inputArray[loopIndex] == pivot) {
 				middleArray[medianArraySize++] = inputArray[loopIndex];				
 			}
 		}		
