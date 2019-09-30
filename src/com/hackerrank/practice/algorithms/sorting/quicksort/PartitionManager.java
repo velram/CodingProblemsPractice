@@ -10,7 +10,7 @@ package com.hackerrank.practice.algorithms.sorting.quicksort;
  */
 public class PartitionManager {
 
-	public void performPartition(int[] inputArray) {
+	public int[] performPartition(int[] inputArray) {
 		int[] resultArray = new int[inputArray.length];
 		System.out.println(" Printing input array");
 		printArray(inputArray);
@@ -53,17 +53,22 @@ public class PartitionManager {
 		
 		System.out.println("\n Printing Left array");
 		printArray(leftArray);
-		System.out.println(" Printing middle array");
+		System.out.println("\n Printing middle array");
 		printArray(middleArray);
-		System.out.println(" Printing right array");
+		System.out.println("\n Printing right array");
 		printArray(rightArray);		
-		System.out.println(" Printing resultArray array");
+		System.out.println("\n Printing resultArray array");
 		printArray(resultArray);	
+		
+		return resultArray;
 	}
 
 	public void printArray(int[] inputArray) {
-		for(int loopIndex = 0; loopIndex < inputArray.length ; loopIndex++)
+		System.out.println("==================================");
+		for(int loopIndex = 0; loopIndex < inputArray.length ; loopIndex++) {
 			System.out.print(" "+inputArray[loopIndex]);
+		}			
+		System.out.println("\n==================================");
 	}
 	
 }
