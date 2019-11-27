@@ -13,20 +13,16 @@ public class ZeroMatrixTester {
     public static void main(String[] args) {
 
         //int[][] matrix = {{1,1,1}, {1,0,1}, {1,1,1}}; //Test case #1 - Normal test case wit 3*3 matrix
-        int[][] matrix = {{0,1,2,0}, {3,4,5,2}, {1,3,1,5}}; //Test case #2 - Normal test case wit 4*4 matrix
-        //int[][] matrix = {{0,1,2,1}, {3,0,5,2}, {1,3,0,5}}; //Test case # - 4*4 matrix with diagonal as zeroes
+        //int[][] matrix = {{0,1,2,0}, {3,4,5,2}, {1,3,1,5}}; //Test case #2 - Normal test case wit 4*4 matrix
+        //int[][] matrix = {{0,1,2,1}, {3,0,5,2}, {1,3,0,5},{5,5,5,0}}; //Test case # - 4*4 matrix with diagonal as zeroes
         //int[][] matrix = {{0,0,0,0}, {0,0,0,0}, {0,0,0,0}}; //Test case # - All zero cells
-        //int[][] matrix = {{1,1,1,1}, {1,1,1,1}, {1,1,1,1}}; //Test case # - No zero cells
-        /*
-        [0,1,2,0],
-        [3,4,5,2],
-        [1,3,1,5]
-         */
+        int[][] matrix = {{1,1,1,1}, {1,1,1,1}, {1,1,1,1}}; //Test case # - No zero cells
+
         Solution solutionObject = new Solution();
-        solutionObject.displayInputArray(matrix);
+        solutionObject.displayMatrix(matrix);
         solutionObject.setZeroes(matrix);
         System.out.println("After populating zeros the matrix is ");
-        solutionObject.displayInputArray(matrix);
+        solutionObject.displayMatrix(matrix);
     }
 }
 
@@ -74,21 +70,23 @@ class Solution {
             System.out.println("Exiting while loop #1 | row : " + row + " | column : " + column + "\n");
         }
 
+        displayMatrix(matrix);
+
         row = 0;
         column = 0;
         while(row < rowSize && column < columnSize){
             System.out.println("Entering while loop #2 | row : " + row + " | column : " + column);
             if(zeroValColumns.contains(column)){
-                matrix[row][column++] = 0;
+                matrix[row][column] = 0;
             }
 
-            if(column < columnSize - 1  && row < rowSize){
-                column++;
-            }
-            //Move to next row & reset column
-            else if(column == columnSize -1 && row < rowSize){
-                column = 0;
+            if(row < rowSize - 1  && column < columnSize){
                 row++;
+            }
+
+            else if(row == rowSize -1 && column < columnSize){
+                row = 0;
+                column++;
             }
             System.out.println("Exiting while loop #2 | row : " + row + " | column : " + column + "\n");
         }
@@ -108,7 +106,7 @@ class Solution {
 
         System.out.println("While entering method | rowSize : "+rowSize + " columnSize : "+columnSize);
 
-        displayInputArray(matrix);
+        displayMatrix(matrix);
 
         //Step #1 - Parse thru array
         while(row < rowSize && column < columnSize){
@@ -139,7 +137,7 @@ class Solution {
         return  zeroValRowColMap;
     }
 
-    public void displayInputArray(int[][] inputArray){
+    public void displayMatrix(int[][] inputArray){
         for(int row = 0 ; row < inputArray.length ; row++){
             for(int column = 0 ; column < inputArray[row].length ; column++){
                 System.out.print(inputArray[row][column] +" ");
