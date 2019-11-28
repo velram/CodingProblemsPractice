@@ -1,13 +1,11 @@
-package com.leetcode.practice.array;
+package com.interviewbit.practice.array;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
- * This is solution to the Leetcode problem "Set Matrix zeroes"
- * Problem URL : https://leetcode.com/problems/set-matrix-zeroes/
+ * @author Velmurugan Moorthy
+ * 28.11.2019
+ *  Question URL : https://www.interviewbit.com/problems/set-matrix-zeros/
  */
 public class ZeroMatrixTester {
     public static void main(String[] args) {
@@ -17,8 +15,15 @@ public class ZeroMatrixTester {
         //int[][] matrix = {{0,1,2,1}, {3,0,5,2}, {1,3,0,5},{5,5,5,0}}; //Test case # - 4*4 matrix with diagonal as zeroes
         //int[][] matrix = {{0,0,0,0}, {0,0,0,0}, {0,0,0,0}}; //Test case # - All zero cells
         //int[][] matrix = {{1,1,1,1}, {1,1,1,1}, {1,1,1,1}}; //Test case # - No zero cells
-        int[][] matrix = {{0,0}, {1,0}}; //Test case # -
 
+        ArrayList<ArrayList<Integer>> matrix = new ArrayList<>();
+        //matrix.add(1,1,1,1);
+        /*matrix.addAll(new int[]{1, 1, 1, 1});
+        matrix.add(Arrays.asList(1,1,1,1));
+        matrix.add(Arrays.asList(1,1,1,1));
+        matrix.add(Arrays.asList(1,1,1,1));*/
+
+        //ArrayList<Integer> pInputList = new ArrayList<Integer>(Arrays.asList(1,2,3,4,5),);
         Solution solutionObject = new Solution();
         solutionObject.displayMatrix(matrix);
         solutionObject.setZeroes(matrix);
@@ -32,20 +37,20 @@ class Solution {
     public static final String ROWS_TEXT = "rows";
     public static final String COLUMNS_TEXT = "columns";
 
-    public void setZeroes(int[][] matrix) {
+    public void setZeroes(ArrayList<ArrayList<Integer>> matrix) {
 
-        int rowSize = matrix.length;
+        int rowSize = matrix.size();
         if(rowSize < 0){
             return;
         }
-        int columnSize = matrix[0].length;
+        int columnSize = matrix.get(0).size();
         Map<String, Set<Integer>> zeroValRowColMap = fetchZeroValRowColMap(matrix, rowSize, columnSize);
 
         //Step #3 - Populate matrix with zeros
         populateMatrixWithZero(matrix,rowSize, columnSize, zeroValRowColMap);
     }
 
-    private void populateMatrixWithZero(int[][] matrix, int rowSize, int columnSize, Map<String, Set<Integer>> zeroValRowColMap) {
+    private void populateMatrixWithZero(ArrayList<ArrayList<Integer>> matrix, int rowSize, int columnSize, Map<String, Set<Integer>> zeroValRowColMap) {
         System.out.println("Entering populateMatrixWithZero | rowSize : " + rowSize + " | columnSize : "+columnSize);
         int row = 0;
         int column = 0;
@@ -57,7 +62,8 @@ class Solution {
         while(row < rowSize && column < columnSize){
             System.out.println("Entering while loop #1 | row : " + row + " | column : " + column);
             if(zeroValRows.contains(row)){
-                matrix[row][column] = 0;
+                //matrix[row][column] = 0;
+                matrix.get(row).set(column,0);
             }
 
             if(column < columnSize - 1  && row < rowSize){
@@ -78,7 +84,8 @@ class Solution {
         while(row < rowSize && column < columnSize){
             System.out.println("Entering while loop #2 | row : " + row + " | column : " + column);
             if(zeroValColumns.contains(column)){
-                matrix[row][column] = 0;
+                //matrix[row][column] = 0;
+                matrix.get(row).set(column,0);
             }
 
             if(row < rowSize - 1  && column < columnSize){
@@ -96,7 +103,7 @@ class Solution {
         System.out.println("Exiting populateMatrixWithZero");
     }
 
-    private Map<String, Set<Integer>> fetchZeroValRowColMap(int[][] matrix, int rowSize, int columnSize) {
+    private Map<String, Set<Integer>> fetchZeroValRowColMap(ArrayList<ArrayList<Integer>> matrix, int rowSize, int columnSize) {
 
         int row = 0;
         int column = 0;
@@ -113,23 +120,24 @@ class Solution {
         while(row < rowSize && column < columnSize){
             System.out.println("While entering loop | row : "+row + " column : "+column);
 
-        //Step #2 - Prepare collection of rows & columns
+            //Step #2 - Prepare collection of rows & columns
 
             //Find zero value cells
-            if(matrix[row][column] == 0){
+            //if(matrix[row][column] == 0){
+                if(matrix.get(row).get(column) == 0){
                 zeroValueColumns.add(column);
                 zeroValueRows.add(row);
                 System.out.println("ZeroValue columns : "+zeroValueColumns + " ZeroValueRows : "+zeroValueRows);
             }
             //Move to next column
-                if(column < columnSize - 1  && row < rowSize){
-                    column++;
-                }
-                //Move to next row & reset column
-                else if(column == columnSize -1 && row < rowSize){
-                    column = 0;
-                    row++;
-                }
+            if(column < columnSize - 1  && row < rowSize){
+                column++;
+            }
+            //Move to next row & reset column
+            else if(column == columnSize -1 && row < rowSize){
+                column = 0;
+                row++;
+            }
             System.out.println("While exiting loop | row : "+row + " column : "+column +"\n");
         }
         zeroValRowColMap.put(ROWS_TEXT,zeroValueRows);
@@ -138,10 +146,11 @@ class Solution {
         return  zeroValRowColMap;
     }
 
-    public void displayMatrix(int[][] inputArray){
-        for(int row = 0 ; row < inputArray.length ; row++){
-            for(int column = 0 ; column < inputArray[row].length ; column++){
-                System.out.print(inputArray[row][column] +" ");
+    public void displayMatrix(ArrayList<ArrayList<Integer>> inputArray){
+
+        for(List<Integer> innerList : inputArray){
+            for(Integer currentElement : innerList){
+                System.out.print(currentElement + " ");
             }
             System.out.println();
         }
