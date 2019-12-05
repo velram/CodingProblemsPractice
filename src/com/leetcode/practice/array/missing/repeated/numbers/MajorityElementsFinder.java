@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * @author Velmurugan Moorthy
- * 03.12.2019
+ * 05.12.2019
  * Question URL : https://leetcode.com/problems/majority-element-ii/
  *
  */
