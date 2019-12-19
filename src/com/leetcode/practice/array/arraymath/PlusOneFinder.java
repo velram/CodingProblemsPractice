@@ -14,7 +14,14 @@ public class PlusOneFinder {
         //int[] inputArray = {0,0,0}; //Test case #4 - All elements are zero - PASS
         //int[] inputArray = {1,8,9}; // Test case #5 - Edge case - only LSB is '9' - PASS
         //int[] inputArray = {9}; //Test case #6 - Only one element, tat too '9' - PASS
-        int[] inputArray = {2,4,9,3,9}; //Test case #7 - Edge case if any one of the digits in the middle has '9'
+        //int[] inputArray = {2,4,9,3,9}; //Test case #7 - Edge case if any one of the digits in the middle has '9'
+        /*
+           Test case #8 - Edge case
+            if any one of the digits in the middle has '9'
+            and MSB is '9' with no carry prior to it
+         */
+        int[] inputArray = {9,4,9,3,9};
+
         Solution solutionObject = new Solution();
         int[] result = solutionObject.plusOne(inputArray);
         solutionObject.displayArray(result);
