@@ -30,16 +30,57 @@ public class AddOneToNumber {
 class Solution {
     public int[] plusOne(int[] digits) {
 
-        for( int loopIndex = digits.length - 1 ; loopIndex >= 0 ; loopIndex--){
-            if(digits[loopIndex] < 9){
-                digits[loopIndex]++;
-                return  digits;
-            }
-            digits[loopIndex] = 0;
+        if(null == digits || digits.length == 0)
+            return null;
+
+        int arraySize = digits.length;
+        int[] result = null;
+        int carry = 1;
+
+        // Add carry to number
+
+        for (int loopIndex = arraySize - 1; loopIndex >= 0 ; loopIndex--) {
+            System.out.println(" START | carry : " + carry + " | digits[loopIndex] " + digits[loopIndex]);
+            int sum = digits[loopIndex] + carry;
+            digits[loopIndex] = sum % 10;
+            carry = sum / 10;
+            System.out.println(" END | carry : " + carry + " | digits[loopIndex] " + digits[loopIndex] + "\n");
         }
-        int newArray[] = new int[digits.length + 1];
-        newArray[0] = 1;
-        return newArray;
+
+
+        // If the MSB carry is greater than '0' then create new array with increased size
+
+        if(carry > 0){
+         int[] extendedArray = new int[arraySize + 1];
+          extendedArray[0] = carry;
+          int extendedArraySize = extendedArray.length;
+          for(int loopIndex = 1; loopIndex < extendedArraySize ; loopIndex++ ){
+              extendedArray[loopIndex] = digits[loopIndex - 1];
+          }
+
+            System.out.println(" extended array : ");
+          displayArray(extendedArray);
+            System.out.println();
+          return  extendedArray;
+        }
+
+        // If the last carry is '0' Go ahead with filtering zeros at MSB
+        else {
+
+            int msbZeroCount = 0;
+
+            while (digits[msbZeroCount] == 0){
+                msbZeroCount++;
+            }
+            result = new int[arraySize - msbZeroCount];
+            for (int loopIndex = msbZeroCount; loopIndex < arraySize; loopIndex++) {
+                result[loopIndex - msbZeroCount] = digits[loopIndex];
+            }
+            displayArray(result);
+            System.out.println();
+        }
+
+        return result;
     }
 
     public void displayArray(int[] inputArray){
