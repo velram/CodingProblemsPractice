@@ -45,8 +45,8 @@ public class MissingRepatingNumberFinder {
     public int[] repeatedNumber(final int[] inputArray) {
         long arraySum = 0;
         long arraySquareSum = 0;
+        int repeatedNumber = 0;
         int missingNumber = 0;
-        int repeatingNumber = 0;
 
         for(int num : inputArray) {
             long lNum = num;
@@ -72,12 +72,12 @@ public class MissingRepatingNumberFinder {
         System.out.println("\n (arraySquareSum - sumSquareOfN) : " + (arraySquareSum - sumSquareOfN));
         System.out.println("(arraySum - sumOfN) : " + (arraySum - sumOfN));/**/
 
-        repeatingNumber = (int)(((arraySquareSum - sumSquareOfN)/(arraySum - sumOfN) - arraySum + sumOfN)/2);
-        missingNumber = repeatingNumber - (int)(sumOfN - arraySum);
+        missingNumber = (int)(((arraySquareSum - sumSquareOfN)/(arraySum - sumOfN) - arraySum + sumOfN)/2);
+        repeatedNumber = missingNumber - (int)(sumOfN - arraySum);
 
-        System.out.println("repeatingNumber : " + repeatingNumber);
-        System.out.println("missingNumber : " + missingNumber);/**/
+        System.out.println("missingNumber : " + missingNumber);
+        System.out.println("repeatedNumber : " + repeatedNumber);/**/
 
-        return new int[]{missingNumber, repeatingNumber};
+        return new int[]{repeatedNumber, missingNumber};
     }
 }
