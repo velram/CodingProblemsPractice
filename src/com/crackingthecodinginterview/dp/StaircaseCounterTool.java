@@ -1,4 +1,4 @@
-package com.practice.crackingthecodinginterview.dp;
+package com.crackingthecodinginterview.dp;
 
 /**
  * @author Velmurugan Moorthy
